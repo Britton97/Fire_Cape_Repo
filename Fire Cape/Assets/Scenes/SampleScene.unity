@@ -287,7 +287,8 @@ MonoBehaviour:
   tailLength: 2
   tail: {fileID: 7448546593979080641, guid: bbccf629a75db2043ac39dcdd4af1a57, type: 3}
   tailList: []
-  period: 0.5
+  period: 0.1
+  waitPeriod: 0.25
 --- !u!4 &260558942
 Transform:
   m_ObjectHideFlags: 0

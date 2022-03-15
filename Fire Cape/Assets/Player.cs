@@ -6,13 +6,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;
     [SerializeField] private SpriteRenderer mySprite;
+    [Header("Tail")]
+    [SerializeField] public GameObject tail;
     [Range(1,10)]
     [SerializeField] private int tailLength;
-    [SerializeField] public GameObject tail;
-    [SerializeField] public List<Tail> tailList = new List<Tail>();
-
     private float nextActionTime = 0.0f;
     public float period = 0.5f;
+    [SerializeField] public List<Tail> tailList = new List<Tail>();
+    [Header("Movement")]
+    public float waitPeriod = 1f;
+    private float time = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +29,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
         //MovementBasic();
-        MovementTilemap();
+        if (time >= waitPeriod)
+        {
+            MovementTilemap();
+        }
         MouseToWorld();
         BurnTail();
 
@@ -112,6 +119,7 @@ public class Player : MonoBehaviour
             {
                 transform.position = tryMove;
                 MoveTail(orginal);
+                time = 0.0f;
             }
         }
         else if (Input.GetKeyDown(KeyCode.A))
@@ -123,6 +131,7 @@ public class Player : MonoBehaviour
             {
                 transform.position = tryMove;
                 MoveTail(orginal);
+                time = 0.0f;
             }
         }
         else if (Input.GetKeyDown(KeyCode.W))
@@ -134,6 +143,7 @@ public class Player : MonoBehaviour
             {
                 transform.position = tryMove;
                 MoveTail(orginal);
+                time = 0.0f;
             }
         }
         else if (Input.GetKeyDown(KeyCode.S))
@@ -145,6 +155,7 @@ public class Player : MonoBehaviour
             {
                 transform.position = tryMove;
                 MoveTail(orginal);
+                time = 0.0f;
             }
         }
     }
